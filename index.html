@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yassir Aboulfarah — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   VARIABLES & RESET
+═══════════════════════════════════════════ */
+:root {
+  --red:        #c8232a;
+  --red-dark:   #8a1217;
+  --red-dim:    #3d0a0d;
+  --black:      #070707;
+  --surface:    #0d0d0d;
+  --card:       #111;
+  --card2:      #151515;
+  --border:     #1e1e1e;
+  --border-red: #2e0a0c;
+  --text:       #c9c9c9;
+  --muted:      #555;
+  --dim:        #888;
+  --white:      #f0f0f0;
+  --mono: 'JetBrains Mono', monospace;
+  --display: 'Syne', sans-serif;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--black);
+  color: var(--text);
+  font-family: var(--display);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb { background: var(--red-dark); }
+
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:200;
+  height: 54px;
+  background: rgba(7,7,7,0.97);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 3.5rem;
+  backdrop-filter: blur(10px);
+}
+.nav-logo { font-family:var(--mono); font-size:.68rem; letter-spacing:3px; color:var(--muted); }
+.nav-logo b { color:var(--red); font-weight:500; }
+.nav-ul { list-style:none; display:flex; gap:2.5rem; }
+.nav-ul a { font-family:var(--mono); font-size:.62rem; letter-spacing:2px; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color .2s; }
+.nav-ul a:hover { color:var(--white); }
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+#hero { min-height:100vh; padding:54px 0 0; display:flex; align-items:center; }
+.hero-wrap {
+  max-width:1140px; margin:0 auto; padding:5rem 3.5rem;
+  display:grid; grid-template-columns:1fr 380px; gap:5rem; align-items:center; width:100%;
+}
+.hero-tag { font-family:var(--mono); font-size:.62rem; letter-spacing:4px; color:var(--red); text-transform:uppercase; margin-bottom:1.4rem; display:flex; align-items:center; gap:.6rem; }
+.hero-tag::before { content:''; display:inline-block; width:22px; height:1px; background:var(--red); }
+h1 { font-family:var(--display); font-size:clamp(2.8rem,5vw,4.2rem); font-weight:800; color:var(--white); line-height:1; letter-spacing:-1.5px; margin-bottom:.6rem; }
+h1 .red { color:var(--red); }
+.hero-subtitle { font-family:var(--mono); font-size:.72rem; color:var(--muted); letter-spacing:3px; margin-bottom:1.8rem; }
+.hero-intro { font-size:1rem; color:var(--dim); line-height:1.85; max-width:520px; margin-bottom:2.5rem; }
+.contacts { display:flex; flex-direction:column; gap:.6rem; }
+.c-row { display:flex; align-items:center; gap:.75rem; font-family:var(--mono); font-size:.7rem; color:var(--dim); }
+.c-row .ico { color:var(--red); width:14px; flex-shrink:0; text-align:center; }
+
+/* SOCIAL BUTTONS */
+.social-btns { display:flex; gap:.8rem; margin-top:1.8rem; }
+.social-btn {
+  display:flex; align-items:center; gap:.5rem;
+  font-family:var(--mono); font-size:.65rem; letter-spacing:2px; text-transform:uppercase;
+  text-decoration:none; padding:.55rem 1.1rem;
+  border:1px solid var(--border); border-radius:2px;
+  color:var(--dim); background:var(--surface);
+  transition:color .2s, border-color .2s, background .2s;
+}
+.social-btn:hover { color:var(--white); border-color:var(--muted); background:var(--card2); }
+.social-btn.li:hover { border-color:#0a66c2; color:#5aa3e8; }
+.social-btn svg { flex-shrink:0; }
+
+/* AVATAR CARD */
+.avatar-card { background:var(--card); border:1px solid var(--border); border-radius:4px; overflow:hidden; }
+.avatar-top { background:var(--red-dim); padding:2.5rem 1.5rem 1.5rem; display:flex; flex-direction:column; align-items:center; gap:1rem; border-bottom:1px solid var(--border-red); }
+.avatar-svg { width:96px; height:96px; border-radius:50%; border:2px solid var(--red-dark); background:#1a0507; overflow:hidden; }
+.avatar-name { font-weight:700; font-size:1.05rem; color:var(--white); text-align:center; }
+.avatar-role { font-family:var(--mono); font-size:.62rem; color:var(--muted); letter-spacing:2px; text-align:center; }
+.avatar-body { padding:1.4rem 1.6rem; font-family:var(--mono); font-size:.7rem; line-height:2; }
+.ab-row { display:flex; justify-content:space-between; align-items:center; }
+.ab-key { color:var(--muted); }
+.ab-val { color:var(--white); }
+.ab-sep { width:100%; height:1px; background:var(--border); margin:.5rem 0; }
+
+/* ═══════════════════════════════════════════
+   SECTIONS
+═══════════════════════════════════════════ */
+.wrap { max-width:1140px; margin:0 auto; padding:5rem 3.5rem; }
+.s-head { display:flex; align-items:center; gap:1.2rem; margin-bottom:3rem; }
+.s-num { font-family:var(--mono); font-size:.58rem; color:var(--red); letter-spacing:3px; white-space:nowrap; flex-shrink:0; }
+h2 { font-family:var(--display); font-size:.85rem; font-weight:700; color:var(--white); letter-spacing:3px; text-transform:uppercase; white-space:nowrap; }
+.s-line { flex:1; height:1px; background:var(--border); }
+
+/* TIMELINE */
+.timeline { border-left:1px solid var(--border-red); margin-left:1rem; display:flex; flex-direction:column; gap:0; }
+.tl-item { position:relative; padding:0 0 2.8rem 2.2rem; }
+.tl-item:last-child { padding-bottom:0; }
+.tl-item::before { content:''; position:absolute; left:-5px; top:5px; width:9px; height:9px; border-radius:50%; background:var(--red); box-shadow:0 0 8px var(--red-dark); }
+.tl-year { font-family:var(--mono); font-size:.58rem; color:var(--red); letter-spacing:3px; margin-bottom:.4rem; }
+.tl-title { font-size:1.1rem; font-weight:700; color:var(--white); margin-bottom:.2rem; }
+.tl-lieu { font-family:var(--mono); font-size:.68rem; color:var(--muted); margin-bottom:.6rem; }
+.tl-desc { font-size:.9rem; color:var(--dim); line-height:1.8; }
+.badge { display:inline-block; font-family:var(--mono); font-size:.6rem; background:var(--red-dim); border:1px solid var(--border-red); color:var(--red); padding:.15rem .55rem; border-radius:2px; margin-top:.5rem; }
+
+/* COMPÉTENCES */
+.skills-outer { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); }
+.sk-block { background:var(--card); padding:1.6rem; transition:background .15s; }
+.sk-block:hover { background:var(--card2); }
+.sk-head { font-family:var(--mono); font-size:.58rem; color:var(--muted); letter-spacing:3px; text-transform:uppercase; border-bottom:1px solid var(--border); padding-bottom:.7rem; margin-bottom:1.1rem; }
+.sk-head span { color:var(--red); margin-right:.4rem; }
+.tag-wrap { display:flex; flex-wrap:wrap; gap:.4rem; }
+.tag { font-family:var(--mono); font-size:.63rem; color:var(--dim); background:var(--surface); border:1px solid var(--border); padding:.18rem .55rem; border-radius:2px; }
+
+/* LANGUES */
+.langs-title { font-family:var(--mono); font-size:.58rem; color:var(--muted); letter-spacing:3px; text-transform:uppercase; margin:2.5rem 0 1.2rem; }
+.langs-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); }
+.lang-item { background:var(--card); padding:1.2rem 1.4rem; display:flex; flex-direction:column; gap:.3rem; }
+.lang-name { font-weight:700; font-size:.9rem; color:var(--white); }
+.lang-level { font-family:var(--mono); font-size:.62rem; color:var(--red); letter-spacing:1px; }
+.lang-note { font-size:.8rem; color:var(--muted); }
+
+/* PROJETS */
+.proj-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--border); border:1px solid var(--border); }
+.proj-card { background:var(--card); padding:2rem; display:flex; flex-direction:column; gap:.9rem; transition:background .15s; }
+.proj-card:hover { background:var(--card2); }
+.proj-top { display:flex; justify-content:space-between; align-items:flex-start; }
+.proj-num { font-family:var(--mono); font-size:.58rem; color:var(--red); letter-spacing:3px; }
+.proj-link { font-family:var(--mono); font-size:.62rem; color:var(--muted); text-decoration:none; border:1px solid var(--border); padding:.2rem .6rem; border-radius:2px; transition:color .15s,border-color .15s; }
+.proj-link:hover { color:var(--red); border-color:var(--red-dark); }
+.proj-title { font-size:1.05rem; font-weight:700; color:var(--white); }
+.proj-desc { font-size:.88rem; color:var(--dim); line-height:1.8; flex:1; }
+.proj-tags { display:flex; flex-wrap:wrap; gap:.35rem; }
+.ptag { font-family:var(--mono); font-size:.6rem; color:var(--red); background:var(--red-dim); border:1px solid var(--border-red); padding:.15rem .5rem; border-radius:2px; }
+
+/* AMBITIONS */
+.amb-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin-bottom:1px; }
+.amb-card { background:var(--card); padding:2rem 1.8rem; border-top:2px solid var(--red-dark); transition:background .15s; }
+.amb-card:hover { background:var(--card2); }
+.amb-horizon { font-family:var(--mono); font-size:.58rem; color:var(--red); letter-spacing:3px; text-transform:uppercase; margin-bottom:.9rem; }
+.amb-title { font-size:.98rem; font-weight:700; color:var(--white); margin-bottom:.7rem; }
+.amb-text { font-size:.87rem; color:var(--dim); line-height:1.8; }
+.life-row { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--border); border:1px solid var(--border); border-top:none; }
+.life-card { background:var(--card); padding:1.5rem 1.8rem; transition:background .15s; }
+.life-card:hover { background:var(--card2); }
+.life-label { font-family:var(--mono); font-size:.58rem; color:var(--muted); letter-spacing:3px; text-transform:uppercase; margin-bottom:.6rem; }
+
+.life-title { font-size:.95rem; font-weight:700; color:var(--white); margin-bottom:.4rem; }
+.life-text { font-size:.85rem; color:var(--dim); line-height:1.75; }
+
+/* INTÉRÊTS */
+.int-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); }
+.int-card { background:var(--card); padding:1.6rem; display:flex; gap:1rem; align-items:flex-start; transition:background .15s; }
+.int-card:hover { background:var(--card2); }
+.int-ico { font-size:1.2rem; flex-shrink:0; padding-top:2px; }
+.int-name { font-weight:700; font-size:.9rem; color:var(--white); margin-bottom:.3rem; }
+.int-detail { font-size:.82rem; color:var(--dim); line-height:1.72; }
+
+/* FOOTER */
+footer { border-top:1px solid var(--border); padding:1.8rem 3.5rem; max-width:1140px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
+.f-copy { font-family:var(--mono); font-size:.6rem; color:var(--muted); }
+.f-contact { font-family:var(--mono); font-size:.6rem; color:var(--muted); text-align:right; }
+
+/* ANIMATIONS */
+.reveal { opacity:0; transform:translateY(18px); transition:opacity .55s ease,transform .55s ease; }
+.reveal.on { opacity:1; transform:translateY(0); }
+.reveal.d1 { transition-delay:.08s; }
+.reveal.d2 { transition-delay:.16s; }
+.reveal.d3 { transition-delay:.24s; }
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .hero-wrap { grid-template-columns:1fr; }
+  .avatar-card { display:none; }
+  .skills-outer { grid-template-columns:1fr 1fr; }
+  .langs-grid { grid-template-columns:1fr; }
+  .proj-grid { grid-template-columns:1fr; }
+  .amb-grid { grid-template-columns:1fr; }
+  .life-row { grid-template-columns:1fr; }
+  .int-grid { grid-template-columns:1fr 1fr; }
+  nav { padding:0 1.5rem; }
+  .nav-ul { gap:1.2rem; }
+  .wrap,.hero-wrap { padding-left:1.5rem; padding-right:1.5rem; }
+  footer { padding-left:1.5rem; padding-right:1.5rem; }
+}
+@media(max-width:600px){
+  .skills-outer { grid-template-columns:1fr; }
+  .int-grid { grid-template-columns:1fr; }
+  .nav-ul { display:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><b>Y.</b>Aboulfarah</div>
+  <ul class="nav-ul">
+    <li><a href="#hero">Profil</a></li>
+    <li><a href="#parcours">Parcours</a></li>
+    <li><a href="#competences">Compétences</a></li>
+    <li><a href="#projets">Projets</a></li>
+    <li><a href="#ambitions">Ambitions</a></li>
+    <li><a href="#interets">Intérêts</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-wrap">
+    <div>
+      <p class="hero-tag">BUT Informatique · IUT d'Orsay · Université Paris-Saclay</p>
+      <h1>Yassir<br><span class="red">Aboulfarah</span></h1>
+      <p class="hero-subtitle">// Étudiant en informatique &nbsp;·&nbsp; 19 ans &nbsp;·&nbsp; Passionné OSINT</p>
+      <p class="hero-intro">
+        Étudiant en première année de BUT Informatique à l'IUT d'Orsay, je construis des compétences solides en développement logiciel, bases de données et systèmes. Curieux et rigoureux, je m'intéresse particulièrement à la cybersécurité et aux techniques d'investigation OSINT.
+      </p>
+      <div class="contacts">
+        <div class="c-row"><span class="ico">@</span> yassir.aboulfarah@universite-paris-saclay.fr</div>
+        <div class="c-row"><span class="ico">✆</span> 07 53 32 65 45</div>
+        <div class="c-row"><span class="ico">◎</span> Orsay, Île-de-France (91)</div>
+      </div>
+      <div class="social-btns">
+        <a href="https://github.com/Yassir-aboulfarah" target="_blank" class="social-btn gh">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.14 3 .4 2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.49 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.21.7.82.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/yassir-aboulfarah-7b1855335/" target="_blank" class="social-btn li">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+
+    <!-- AVATAR CARD -->
+    <div class="avatar-card">
+      <div class="avatar-top">
+        <div class="avatar-svg">
+          <svg width="96" height="96" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+            <rect width="96" height="96" fill="#1a0507"/>
+            <!-- corps / vêtement -->
+            <ellipse cx="48" cy="80" rx="28" ry="18" fill="#1e0408"/>
+            <!-- col -->
+            <path d="M36 68 L48 74 L60 68 L63 80 L33 80Z" fill="#2a0608"/>
+            <!-- tête -->
+            <ellipse cx="48" cy="40" rx="20" ry="21" fill="#7a5044"/>
+            <!-- cheveux -->
+            <path d="M28 37 Q29 18 48 16 Q67 18 68 37 Q65 24 48 22 Q31 24 28 37Z" fill="#120806"/>
+            <!-- barbe légère -->
+            <ellipse cx="48" cy="56" rx="14" ry="5" fill="#1a0c08" opacity=".4"/>
+            <!-- sourcils -->
+            <rect x="33" y="32" width="11" height="2.5" rx="1.5" fill="#120806"/>
+            <rect x="52" y="32" width="11" height="2.5" rx="1.5" fill="#120806"/>
+            <!-- yeux -->
+            <ellipse cx="39" cy="39" rx="4.5" ry="5" fill="#fff"/>
+            <ellipse cx="57" cy="39" rx="4.5" ry="5" fill="#fff"/>
+            <circle cx="40" cy="40" r="3" fill="#1a0808"/>
+            <circle cx="57" cy="40" r="3" fill="#1a0808"/>
+            <circle cx="41" cy="39" r="1.1" fill="#fff"/>
+            <circle cx="58" cy="39" r="1.1" fill="#fff"/>
+            <!-- nez -->
+            <ellipse cx="48" cy="46" rx="2.5" ry="2" fill="#6a4038"/>
+            <!-- bouche -->
+            <path d="M41 52 Q48 57 55 52" stroke="#4a2820" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="avatar-name">Yassir Aboulfarah</div>
+        <div class="avatar-role">Étudiant BUT Informatique S2</div>
+      </div>
+      <div class="avatar-body">
+        <div class="ab-row"><span class="ab-key">Formation</span><span class="ab-val">BUT Informatique</span></div>
+        <div class="ab-sep"></div>
+        <div class="ab-row"><span class="ab-key">Établissement</span><span class="ab-val">IUT d'Orsay</span></div>
+        <div class="ab-sep"></div>
+        <div class="ab-row"><span class="ab-key">Bac obtenu</span><span class="ab-val">STI2D — AB</span></div>
+        <div class="ab-sep"></div>
+        <div class="ab-row"><span class="ab-key">Âge</span><span class="ab-val">19 ans</span></div>
+        <div class="ab-sep"></div>
+        <div class="ab-row"><span class="ab-key">Passion</span><span class="ab-val">OSINT / CyberSec</span></div>
+        <div class="ab-sep"></div>
+        <div class="ab-row"><span class="ab-key">Disponibilité</span><span class="ab-val">Stage été 2025</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARCOURS -->
+<section id="parcours">
+  <div class="wrap">
+    <div class="s-head reveal">
+      <span class="s-num">01 —</span>
+      <h2>Parcours scolaire &amp; universitaire</h2>
+      <div class="s-line"></div>
+    </div>
+    <div class="timeline">
+      <div class="tl-item reveal d1">
+        <div class="tl-year">2024 — EN COURS</div>
+        <div class="tl-title">BUT Informatique — Semestre 2</div>
+        <div class="tl-lieu">IUT d'Orsay · Université Paris-Saclay · Orsay (91)</div>
+        <div class="tl-desc">
+          Formation en développement logiciel (C, C++, Java, Python), bases de données (SQL, PL/SQL), administration systèmes Linux, gestion de projets et travail en équipe. Travaux pratiques en binôme et projets tuteurés sur des cas concrets d'entreprise.
+        </div>
+      </div>
+      <div class="tl-item reveal d2">
+        <div class="tl-year">2022 — 2024</div>
+        <div class="tl-title">Baccalauréat STI2D <span class="badge">Mention Assez Bien</span></div>
+        <div class="tl-lieu">Lycée de Cachan · Cachan (94)</div>
+        <div class="tl-desc">
+          Spécialité <strong style="color:var(--white)">SIN — Systèmes d'Information et Numérique</strong> : programmation embarquée, architecture des systèmes numériques, électronique et traitement de l'information. Enseignements complémentaires en mathématiques et sciences de l'ingénieur.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPÉTENCES -->
+<section id="competences">
+  <div class="wrap">
+    <div class="s-head reveal">
+      <span class="s-num">02 —</span>
+      <h2>Compétences</h2>
+      <div class="s-line"></div>
+    </div>
+
+    <div class="skills-outer reveal">
+      <div class="sk-block">
+        <div class="sk-head"><span>▸</span>Développement</div>
+        <div class="tag-wrap">
+          <span class="tag">C++</span><span class="tag">C</span><span class="tag">C#</span>
+          <span class="tag">Java</span><span class="tag">Python</span><span class="tag">POO</span><span class="tag">SDL2</span>
+        </div>
+      </div>
+      <div class="sk-block">
+        <div class="sk-head"><span>▸</span>Développement Web</div>
+        <div class="tag-wrap">
+          <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+          <span class="tag">PHP</span><span class="tag">API REST</span>
+        </div>
+      </div>
+      <div class="sk-block">
+        <div class="sk-head"><span>▸</span>Bases de données</div>
+        <div class="tag-wrap">
+          <span class="tag">SQL</span><span class="tag">SQLite</span><span class="tag">PL/SQL</span>
+          <span class="tag">JDBC</span><span class="tag">Conception de schémas</span><span class="tag">Requêtes complexes</span>
+        </div>
+      </div>
+      <div class="sk-block">
+        <div class="sk-head"><span>▸</span>Systèmes &amp; Réseau</div>
+        <div class="tag-wrap">
+          <span class="tag">Linux</span><span class="tag">SSH</span>
+          <span class="tag">Administration système</span><span class="tag">Configuration réseau</span><span class="tag">Pare-feu</span>
+        </div>
+      </div>
+      <div class="sk-block">
+        <div class="sk-head"><span>▸</span>OSINT &amp; Cybersécurité</div>
+        <div class="tag-wrap">
+          <span class="tag">OSINT</span><span class="tag">Google Dorking</span>
+          <span class="tag">Shodan</span><span class="tag">Maltego</span><span class="tag">Kali Linux</span>
+        </div>
+      </div>
+      <div class="sk-block">
+        <div class="sk-head"><span>▸</span>Outils</div>
+        <div class="tag-wrap">
+          <span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">VS Code</span>
+          <span class="tag">IntelliJ IDEA</span><span class="tag">Postman</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="langs-title reveal">▸ Langues — Cadre Européen Commun de Référence (CECR)</p>
+    <div class="langs-grid reveal">
+      <div class="lang-item">
+        <div class="lang-name">🇫🇷 Français</div>
+        <div class="lang-level">C2 — Maîtrise</div>
+        <div class="lang-note">Langue maternelle</div>
+      </div>
+      <div class="lang-item">
+        <div class="lang-name">🇲🇦 Arabe</div>
+        <div class="lang-level">C2 — Maîtrise</div>
+        <div class="lang-note">Langue maternelle</div>
+      </div>
+      <div class="lang-item">
+        <div class="lang-name">🇬🇧 Anglais</div>
+        <div class="lang-level">B2 — Intermédiaire avancé</div>
+        <div class="lang-note">Lecture technique courante, conférences DEF CON</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETS -->
+<section id="projets">
+  <div class="wrap">
+    <div class="s-head reveal">
+      <span class="s-num">03 —</span>
+      <h2>Projets réalisés</h2>
+      <div class="s-line"></div>
+    </div>
+
+    <div class="proj-grid reveal">
+      <div class="proj-card">
+        <div class="proj-top">
+          <span class="proj-num">PROJET 01</span>
+          <a href="https://portfolio1denicolas.netlify.app/projets/game" target="_blank" class="proj-link">↗ Voir le projet</a>
+        </div>
+        <div class="proj-title">Jeu vidéo 2D en C++ / SDL2</div>
+        <div class="proj-desc">Jeu 2D développé en binôme sur 3 mois à l'IUT. Le joueur évite des ennemis, collecte des objets et progresse à travers des niveaux de difficulté croissante. Architecture complète en programmation orientée objet : moteur de collision, boucle de jeu optimisée, gestion d'événements clavier et chargement de sprites. Compilé et testé sous Linux.</div>
+        <div class="proj-tags">
+          <span class="ptag">C++</span><span class="ptag">SDL2</span><span class="ptag">POO</span>
+          <span class="ptag">Linux</span><span class="ptag">Game Dev</span><span class="ptag">Makefile</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <span class="proj-num">PROJET 02</span>
+          <a href="https://portfolio1denicolas.netlify.app/projets/database" target="_blank" class="proj-link">↗ Voir le projet</a>
+        </div>
+        <div class="proj-title">Base de données relationnelle</div>
+        <div class="proj-desc">Conception et implémentation complète d'une BDD relationnelle à partir d'un cahier des charges. Modélisation entité-association, normalisation (3NF), requêtes complexes avec jointures, sous-requêtes, vues et déclencheurs. Procédures stockées PL/SQL. Connexion à une application Java via JDBC.</div>
+        <div class="proj-tags">
+          <span class="ptag">SQL</span><span class="ptag">SQLite</span><span class="ptag">PL/SQL</span>
+          <span class="ptag">JDBC</span><span class="ptag">Java</span><span class="ptag">Database Design</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <span class="proj-num">PROJET 03</span>
+          <a href="https://portfolio1denicolas.netlify.app/projets/web" target="_blank" class="proj-link">↗ Voir le projet</a>
+        </div>
+        <div class="proj-title">Application web HTML / CSS / JS + PHP</div>
+        <div class="proj-desc">Application web full-stack : interface front-end HTML5/CSS3/JavaScript avec DOM dynamique, back-end PHP avec gestion de sessions et authentification sécurisée, consommation d'une API REST (JSON), persistance en base de données SQL. Déployée en ligne.</div>
+        <div class="proj-tags">
+          <span class="ptag">HTML</span><span class="ptag">CSS</span><span class="ptag">JavaScript</span>
+          <span class="ptag">PHP</span><span class="ptag">API REST</span><span class="ptag">SQL</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <span class="proj-num">PROJET 04</span>
+          <a href="#" class="proj-link">↗ Sur demande</a>
+        </div>
+        <div class="proj-title">Investigation OSINT — Projet personnel</div>
+        <div class="proj-desc">Investigation complète sur une cible publique par sources ouvertes : cartographie de l'empreinte numérique via Google Dorking avancé, Shodan et Maltego. Corrélation des données collectées, évaluation de la fiabilité des sources, rédaction d'un rapport structuré avec chaîne de preuves et recommandations de durcissement.</div>
+        <div class="proj-tags">
+          <span class="ptag">OSINT</span><span class="ptag">Maltego</span><span class="ptag">Shodan</span>
+          <span class="ptag">Google Dorking</span><span class="ptag">Kali Linux</span><span class="ptag">Rapport</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AMBITIONS -->
+<section id="ambitions">
+  <div class="wrap">
+    <div class="s-head reveal">
+      <span class="s-num">04 —</span>
+      <h2>Projet personnel &amp; professionnel</h2>
+      <div class="s-line"></div>
+    </div>
+
+    <div class="amb-grid reveal">
+      <div class="amb-card">
+        <div class="amb-horizon">Court terme · 0 – 1 an</div>
+        <div class="amb-title">Valider le BUT &amp; décrocher un stage</div>
+        <div class="amb-text">Réussir le semestre 2 avec de bons résultats, consolider mes compétences en cybersécurité et en développement, et obtenir un stage formateur dans une entreprise tech ou un organisme spécialisé en sécurité informatique.</div>
+      </div>
+      <div class="amb-card">
+        <div class="amb-horizon">Moyen terme · 1 – 3 ans</div>
+        <div class="amb-title">Poursuite d'études en cybersécurité</div>
+        <div class="amb-text">Intégrer un Master spécialisé en cybersécurité ou renseignement numérique (Université Paris-Saclay). Obtenir des certifications reconnues : CompTIA Security+, CEH ou OSCP pour valider mon expertise technique.</div>
+      </div>
+      <div class="amb-card">
+        <div class="amb-horizon">Long terme · 3 – 5 ans</div>
+        <div class="amb-title">Analyste CTI ou Pentester</div>
+        <div class="amb-text">Intégrer une équipe de Cyber Threat Intelligence ou un Red Team au sein d'une ESN spécialisée, d'une grande entreprise ou d'un organisme public (ANSSI). Contribuer à la protection des systèmes d'information nationaux.</div>
+      </div>
+    </div>
+
+    <div class="life-row reveal">
+      <div class="life-card">
+        <div class="life-label">Poursuite d'études envisagée</div>
+        <div class="life-title">BUT Informatique → Master Cybersécurité</div>
+        <div class="life-text">À l'issue du BUT, je souhaite poursuivre en Master 2 dans une université ou école d'ingénieurs reconnue, idéalement en apprentissage pour combiner formation théorique et expérience professionnelle en entreprise.</div>
+      </div>
+      <div class="life-card">
+        <div class="life-label">Entrée dans la vie active</div>
+        <div class="life-title">Disponible dès l'été 2025 — Stage</div>
+        <div class="life-text">Je suis à la recherche d'un stage de fin d'année ou d'une alternance dans les domaines de la cybersécurité, du développement ou de l'administration systèmes. Disponible à partir de juin 2025, en Île-de-France.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTÉRÊTS -->
+<section id="interets">
+  <div class="wrap">
+    <div class="s-head reveal">
+      <span class="s-num">05 —</span>
+      <h2>Centres d'intérêt &amp; passions</h2>
+      <div class="s-line"></div>
+    </div>
+
+    <div class="int-grid reveal">
+      <div class="int-card">
+        <span class="int-ico">🔍</span>
+        <div>
+          <div class="int-name">OSINT &amp; Cybersécurité</div>
+          <div class="int-detail">Pratique autonome depuis 2023. Résolution de CTF sur TryHackMe — niveau intermédiaire (plus de 30 salles complétées). Veille quotidienne sur The Hacker News et Krebs on Security.</div>
+        </div>
+      </div>
+      <div class="int-card">
+        <span class="int-ico">🎮</span>
+        <div>
+          <div class="int-name">Jeux vidéo</div>
+          <div class="int-detail">Joueur depuis 2015. FPS compétitif : Valorant (rang Gold 2, saison 2024). Jeux sandbox (Minecraft, mods techniques). Passion à l'origine de mon projet C++/SDL2 et de mon intérêt pour l'architecture logicielle.</div>
+        </div>
+      </div>
+      <div class="int-card">
+        <span class="int-ico">📖</span>
+        <div>
+          <div class="int-name">Lecture technique</div>
+          <div class="int-detail">Lecture hebdomadaire : The Hacker News, Krebs on Security, articles de recherche. Livre lu en 2024 : "The Art of Intrusion" de Kevin Mitnick. Documentation technique (MDN, man pages) en lecture quotidienne.</div>
+        </div>
+      </div>
+      <div class="int-card">
+        <span class="int-ico">⚽</span>
+        <div>
+          <div class="int-name">Football</div>
+          <div class="int-detail">Pratique en club depuis son arrivée en France en 2022. Poste : milieu de terrain. Deux entraînements par semaine et matchs le week-end. Développe l'esprit d'équipe, la rigueur et la gestion de la pression.</div>
+        </div>
+      </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-copy">© 2025 — Yassir Aboulfarah — BUT Informatique S2, IUT d'Orsay</div>
+  <div class="f-contact">yassir.aboulfarah@universite-paris-saclay.fr &nbsp;·&nbsp; 07 53 32 65 45</div>
+</footer>
+
+<script>
+// Scroll reveal
+const io = new IntersectionObserver(
+  entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); }),
+  { threshold: 0.07 }
+);
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Nav active link
+const secs  = document.querySelectorAll('section[id]');
+const links = document.querySelectorAll('.nav-ul a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  secs.forEach(s => { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
+  links.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--white)' : '';
+  });
+}, { passive: true });
+</script>
+
+</body>
+</html>
